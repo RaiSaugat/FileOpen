@@ -1,0 +1,30 @@
+openItem.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				chooser.setCurrentDirectory(new File("/Desktop/"));
+				int result = chooser.showOpenDialog(FileDialogDemo.this);
+				if(result == JFileChooser.APPROVE_OPTION){
+					File fileToOpen = chooser.getSelectedFile();
+					try
+					{
+						BufferedReader reader = new BufferedReader(new FileReader(fileToOpen));
+						String str;
+						StringBuffer sb= new StringBuffer();
+						
+						while ((str = reader.readLine()) != null)
+					    {
+					      sb.append(str);
+					    }
+						tx.setText(sb.toString());	
+						reader.close();
+					}
+					catch(Exception e)
+					{
+						e.printStackTrace();
+					}
+				}
+				JOptionPane.showMessageDialog(null, "File Opened");
+			}
+		});		
+		
